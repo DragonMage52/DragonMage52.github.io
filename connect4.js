@@ -25,6 +25,11 @@ $(document).ready(function () {
     }
     
     $("#playerTurn").text("Player One's Turn");
+    var tw = $("#00").width() *.82;
+    var th = $("#00").height() *.82;
+    alert(tw + " " + th);
+    $("td").width(tw + "px");
+    $("td").height(tw + "px");
     
     var bw = $("#board").width() * .76;
         $("table").css({"height": bw + "px"});
@@ -36,9 +41,8 @@ $(document).ready(function () {
         $("#frontTable").css({"left": left + 'px'});
         $("#frontTable").css({"height": bw + "px"});
 
-    $(".column").bind("touchmove", function (e) {
+    $(".column").on("mouseover touchstart", function (e) {
         if (play === 1) {
-            //alert("touchstart");
             var id = e.target.id;
             $(".column:not(#" + id + ")").empty();
             if (!(e.target.firstChild)) {
@@ -83,12 +87,12 @@ $(document).ready(function () {
             if (i + 1 < 6) {
                 if (board[i + 1][col] !== " ") {
                     if (turn % 2 === 0) {
-                        $("#" + i + "" + col).css({"background-color": "black"});
+                        $("#" + i + "" + col).append(blackChip);
                         alert("#" + i + "" + col);
                         board[i][col] = "X";
                         turn++;
                     } else {
-                        $("#" + i + "" + col).css({"background-color": "red"});
+                        $("#" + i + "" + col).append(redChip);
                         alert("#" + i + "" + col);
                         board[i][col] = "O";
                         turn++;
@@ -97,12 +101,12 @@ $(document).ready(function () {
                 }
             } else if (i + 1 === 6) {
                 if (turn % 2 === 0) {
-                    $("#" + i + "" + col).css({"background-color": "black"});
+                    $("#" + i + "" + col).append(blackChip);
                     alert("#" + i + "" + col);
                     board[i][col] = "X";
                     turn++;
                 } else {
-                    $("#" + i + "" + col).css({"background-color": "red"});
+                    $("#" + i + "" + col).append(redChip);
                     alert("#" + i + "" + col);
                     board[i][col] = "O";
                     turn++;
