@@ -36,7 +36,7 @@ $(document).ready(function () {
         $("#frontTable").css({"left": left + 'px'});
         $("#frontTable").css({"height": bw + "px"});
 
-    $(".column").bind("touchstart", function (e) {
+    $(".column").bind("touchmove", function (e) {
         if (play === 1) {
             alert("touchstart");
             var id = e.target.id;
