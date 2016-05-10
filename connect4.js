@@ -24,6 +24,8 @@ $(document).ready(function () {
         }
     }
     
+    $("#playerTurn").text("Player One's Turn");
+    
     var bw = $("#board").width() * .76;
         $("table").css({"height": bw + "px"});
         var hd = $("#00").height();
@@ -34,8 +36,9 @@ $(document).ready(function () {
         $("#frontTable").css({"left": left + 'px'});
         $("#frontTable").css({"height": bw + "px"});
 
-    $(".column").bind("touchstart touchend", function (e) {
+    $(".column").bind("touchstart", function (e) {
         if (play === 1) {
+            alert("touchstart");
             var id = e.target.id;
             $(".column:not(#" + id + ")").empty();
             if (!(e.target.firstChild)) {
