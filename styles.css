@@ -21,11 +21,11 @@ and open the template in the editor.
 }
 
 td {
-    background-color:white;
+    background-color:red;
 }
 
 #frontTable {
-    width:81%;
+    display:table-cell;
     padding: 0px;
     position:absolute;
     z-index: 1;

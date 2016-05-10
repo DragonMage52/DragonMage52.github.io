@@ -31,9 +31,7 @@ $(document).ready(function () {
         $("table").css({"height" :bw+"px"});
         var position = $("#board").offset();
         var left = position.left - $("#pagetwo").offset().left;
-        alert(left);
-        alert(position.top);
-        $("#frontTable").css({"top" :position.top+'px'});
+        $("#frontTable").css({"top" :(position.top)+'px'});
         $("#frontTable").css({"left" :left+'px'});
         $("#frontTable").css({"height" :bw+"px"});
         play = 1;
