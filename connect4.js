@@ -34,7 +34,7 @@ $(document).ready(function () {
         $("#frontTable").css({"left": left + 'px'});
         $("#frontTable").css({"height": bw + "px"});
 
-    $(".column").mouseover(function (e) {
+    $(".column").on("touchstart", function (e) {
         if (play === 1) {
             var id = e.target.id;
             $(".column:not(#" + id + ")").empty();
