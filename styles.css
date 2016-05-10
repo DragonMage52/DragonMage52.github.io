@@ -9,13 +9,24 @@ and open the template in the editor.
 */
 
 #board {
-    background-image: url("images/Connect4Board.png");
+    background-image: url("images/Connect4Board.png") !important;
     width:84%;
     margin-left: 8%;
     margin-top: 10%;
     padding:0px;
     background-repeat: no-repeat;
-    background-size: 100%;
-    
+    background-size: 100%; 
+    position:relative;
+    z-index: 0;
 }
 
+td {
+    background-color:white;
+}
+
+#frontTable {
+    width:81%;
+    padding: 0px;
+    position:absolute;
+    z-index: 1;
+}
