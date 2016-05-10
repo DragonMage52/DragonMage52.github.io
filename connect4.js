@@ -38,7 +38,7 @@ $(document).ready(function () {
 
     $(".column").bind("touchmove", function (e) {
         if (play === 1) {
-            alert("touchstart");
+            //alert("touchstart");
             var id = e.target.id;
             $(".column:not(#" + id + ")").empty();
             if (!(e.target.firstChild)) {
