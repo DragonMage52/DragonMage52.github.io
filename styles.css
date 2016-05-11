@@ -17,6 +17,7 @@ and open the template in the editor.
     background-size: 100%; 
     position:relative;
     z-index: 0;
+    display: inline-table;
 }
 
 #frontTable {
@@ -27,11 +28,11 @@ and open the template in the editor.
 }
 
 .column {
-    width:10.5%;
     height:20px;
     float:left;
     border-width: 2px;
     border-style: none solid none none;
+    display: inline-block;
 
 }
 

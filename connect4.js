@@ -27,9 +27,12 @@ $(document).ready(function () {
     $("#playerTurn").text("Player One's Turn");
 
     var width = $(window).width();
+    if (width > 876) {
+        width = 876;
+    }
     $("#board").css({"width": (width * .84) + "px"});
     $("#board").css({"height": (width * .64) + "px"});
-    $(".column").css({"width": ((width * .78)/7) + "px"});
+    $(".column").css({"width": ((width * .60) / 7) + "px"});
 
     var tw = $("#00").width() * .82;
     var th = $("#00").height() * .82;
@@ -43,6 +46,27 @@ $(document).ready(function () {
         $(".column").css({"height": th + "px"});
     }
 
+    $(window).on("resize", function () {
+        var width = $(window).width();
+        if (width > 876) {
+            width = 876;
+        }
+        $("#board").css({"width": (width * .84) + "px"});
+        $("#board").css({"height": (width * .64) + "px"});
+        $(".column").css({"width": ((width * .78) / 7) + "px"});
+
+        var tw = $("#00").width() * .82;
+        var th = $("#00").height() * .82;
+        if (tw > th) {
+            $("td").css({"width": tw + "px"});
+            $("td").css({"height": tw + "px"});
+            $(".column").css({"height": tw + "px"});
+        } else {
+            $("td").css({"width": th + "px"});
+            $("td").css({"height": th + "px"});
+            $(".column").css({"height": th + "px"});
+        }
+    });
 
     $(".column").on("mouseover touchstart", function (e) {
         if (play === 1 && end === 0) {
