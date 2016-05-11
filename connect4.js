@@ -26,8 +26,8 @@ $(document).ready(function () {
 
     $("#playerTurn").text("Player One's Turn");
 
-    var tw = $("#00").width() * .82;
-    var th = $("#00").height() * .82;
+    var tw = $("#00").width() * .80;
+    var th = $("#00").height() * .80;
     if (tw > th) {
         $("td").width(tw + "px");
         $("td").height(tw + "px");
