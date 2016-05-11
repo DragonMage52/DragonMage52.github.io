@@ -10,7 +10,6 @@ and open the template in the editor.
 
 #board {
     background-image: url("images/Connect4Board.png");
-    width:84%;
     margin-left: 8%;
     margin-right: 8%;
     padding:0px;
@@ -28,7 +27,7 @@ and open the template in the editor.
 }
 
 .column {
-    width:11.4%;
+    width:10.5%;
     height:20px;
     float:left;
     border-width: 2px;

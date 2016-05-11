@@ -25,26 +25,40 @@ $(document).ready(function () {
     }
 
     $("#playerTurn").text("Player One's Turn");
+    /*
+     var tw = $("#00").width() * .82;
+     var th = $("#00").height() * .82;
+     if (tw > th) {
+     $("td").width(tw + "px");
+     $("td").height(tw + "px");
+     } else {
+     $("td").width(th + "px");
+     $("td").height(th + "px");
+     }
+     
+     var bw = $("#board").width() * .78;
+     $("table").css({"height": bw + "px"});
+     var hd = $("#00").height();
+     $(".column").css({"height": hd + "px"});
+     */
+
+    var width = $(window).width();
+    $("#board").css({"width": (width * .84) + "px"});
+    $("#board").css({"height": (width * .64) + "px"});
+    $(".column").css({"width": ((width * .78)/7) + "px"});
 
     var tw = $("#00").width() * .82;
     var th = $("#00").height() * .82;
     if (tw > th) {
-        $("td").width(tw + "px");
-        $("td").height(tw + "px");
+        $("td").css({"width": tw + "px"});
+        $("td").css({"height": tw + "px"});
+        $(".column").css({"height": tw + "px"});
     } else {
-        $("td").width(th + "px");
-        $("td").height(th + "px");
+        $("td").css({"width": th + "px"});
+        $("td").css({"height": th + "px"});
+        $(".column").css({"height": th + "px"});
     }
 
-    var bw = $("#board").width() * .76;
-    $("table").css({"height": bw + "px"});
-    var hd = $("#00").height();
-    $(".column").css({"height": hd + "px"});
-    var position = $("#board").offset();
-    var left = position.left - $("#pagetwo").offset().left;
-    $("#frontTable").css({"top": (position.top) + 'px'});
-    $("#frontTable").css({"left": left + 'px'});
-    $("#frontTable").css({"height": bw + "px"});
 
     $(".column").on("mouseover touchstart", function (e) {
         if (play === 1 && end === 0) {
@@ -186,23 +200,23 @@ $(document).ready(function () {
             }
         }
     });
-    
+
     $("#btnNewGame").click(function () {
-       $("tr").children().empty();
-       for (var i = 0; i < 6; i++) {
-        for (var j = 0; j < 7; j++) {
-            if (!board[i]) {
-                board[i] = [];
+        $("tr").children().empty();
+        for (var i = 0; i < 6; i++) {
+            for (var j = 0; j < 7; j++) {
+                if (!board[i]) {
+                    board[i] = [];
+                }
+                board[i][j] = " ";
             }
-            board[i][j] = " ";
         }
-    }
-    
-    $("#playerTurn").text("Player One's Turn");
-    
-    turn = 0;
-    end = 0;
-    play = 1;
+
+        $("#playerTurn").text("Player One's Turn");
+
+        turn = 0;
+        end = 0;
+        play = 1;
     });
 });
 
