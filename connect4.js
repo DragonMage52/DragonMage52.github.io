@@ -32,7 +32,7 @@ $(document).ready(function () {
     }
     $("#board").css({"width": (width * .84) + "px"});
     $("#board").css({"height": (width * .64) + "px"});
-    $(".column").css({"width": ((width * .60) / 7) + "px"});
+    $(".column").css({"width": ((width * .76) / 7) + "px"});
 
     var tw = $("#00").width() * .82;
     var th = $("#00").height() * .82;
