@@ -23,26 +23,31 @@ $(document).ready(function () {
             board[i][j] = " ";
         }
     }
-    
+
     $("#playerTurn").text("Player One's Turn");
-    var tw = $("#00").width() *.82;
-    var th = $("#00").height() *.82;
-    alert(tw + " " + th);
-    $("td").width(tw + "px");
-    $("td").height(tw + "px");
-    
+
+    var tw = $("#00").width() * .82;
+    var th = $("#00").height() * .82;
+    if (tw > th) {
+        $("td").width(tw + "px");
+        $("td").height(tw + "px");
+    } else {
+        $("td").width(th + "px");
+        $("td").height(th + "px");
+    }
+
     var bw = $("#board").width() * .76;
-        $("table").css({"height": bw + "px"});
-        var hd = $("#00").height();
-        $(".column").css({"height": hd + "px"});
-        var position = $("#board").offset();
-        var left = position.left - $("#pagetwo").offset().left;
-        $("#frontTable").css({"top": (position.top) + 'px'});
-        $("#frontTable").css({"left": left + 'px'});
-        $("#frontTable").css({"height": bw + "px"});
+    $("table").css({"height": bw + "px"});
+    var hd = $("#00").height();
+    $(".column").css({"height": hd + "px"});
+    var position = $("#board").offset();
+    var left = position.left - $("#pagetwo").offset().left;
+    $("#frontTable").css({"top": (position.top) + 'px'});
+    $("#frontTable").css({"left": left + 'px'});
+    $("#frontTable").css({"height": bw + "px"});
 
     $(".column").on("mouseover touchstart", function (e) {
-        if (play === 1) {
+        if (play === 1 && end === 0) {
             var id = e.target.id;
             $(".column:not(#" + id + ")").empty();
             if (!(e.target.firstChild)) {
@@ -56,66 +61,148 @@ $(document).ready(function () {
     });
 
     $(".column").click(function (e) {
-        var col = 0;
-        var id = this.id;
-        switch (id) {
-            case "column0":
-                col = 0;
-                break;
-            case "column1":
-                col = 1;
-                break;
-            case "column2":
-                col = 2;
-                break;
-            case "column3":
-                col = 3;
-                break;
-            case "column4":
-                col = 4;
-                break;
-            case "column5":
-                col = 5;
-                break;
-            case "column6":
-                col = 6;
-                break;
-        }
-        var i = 0;
-        while (board[i][col] === " ") {
-            play = 0;
-            if (i + 1 < 6) {
-                if (board[i + 1][col] !== " ") {
+        if (play === 1 && end === 0) {
+            var col = 0;
+            var id = this.id;
+            switch (id) {
+                case "column0":
+                    col = 0;
+                    break;
+                case "column1":
+                    col = 1;
+                    break;
+                case "column2":
+                    col = 2;
+                    break;
+                case "column3":
+                    col = 3;
+                    break;
+                case "column4":
+                    col = 4;
+                    break;
+                case "column5":
+                    col = 5;
+                    break;
+                case "column6":
+                    col = 6;
+                    break;
+            }
+            var i = 0;
+            while (board[i][col] === " ") {
+                play = 0;
+                if (i + 1 < 6) {
+                    if (board[i + 1][col] !== " ") {
+                        if (turn % 2 === 0) {
+                            $("#" + i + "" + col).append(blackChip);
+                            board[i][col] = "X";
+                        } else {
+                            $("#" + i + "" + col).append(redChip);
+                            board[i][col] = "O";
+                        }
+                        break;
+                    }
+                } else if (i + 1 === 6) {
                     if (turn % 2 === 0) {
                         $("#" + i + "" + col).append(blackChip);
-                        alert("#" + i + "" + col);
                         board[i][col] = "X";
-                        turn++;
                     } else {
                         $("#" + i + "" + col).append(redChip);
-                        alert("#" + i + "" + col);
                         board[i][col] = "O";
-                        turn++;
                     }
                     break;
                 }
-            } else if (i + 1 === 6) {
-                if (turn % 2 === 0) {
-                    $("#" + i + "" + col).append(blackChip);
-                    alert("#" + i + "" + col);
-                    board[i][col] = "X";
-                    turn++;
-                } else {
-                    $("#" + i + "" + col).append(redChip);
-                    alert("#" + i + "" + col);
-                    board[i][col] = "O";
-                    turn++;
-                }
-                break;
+                i++;
             }
-            i++;
+
+            var count = 0;
+            var row, j;
+            var letter;
+            if (turn % 2 === 0) {
+                letter = 'X';
+            } else {
+                letter = 'O';
+            }
+            for (var s = 0; s < 8; s++) {
+                row = i;
+                j = col;
+                if (s % 2 === 0) {
+                    count = 0;
+                }
+                while (board[row][j] === letter) {
+                    if (!(row === i && j === col)) {
+                        count++;
+                    }
+
+                    switch (s) {
+                        case 0:
+                            row--;
+                            break;
+                        case 1:
+                            row++;
+                            break;
+                        case 2:
+                            row--;
+                            j++;
+                            break;
+                        case 3:
+                            row++;
+                            j--;
+                            break;
+                        case 4:
+                            j++;
+                            break;
+                        case 5:
+                            j--;
+                            break;
+                        case 6:
+                            row++;
+                            j++;
+                            break;
+                        case 7:
+                            row--;
+                            j--;
+                    }
+                    if (count >= 3) {
+                        end = 1;
+                        if (turn % 2 === 0) {
+                            $("#playerTurn").text("Player One Wins");
+                        } else {
+                            $("#playerTurn").text("Player Two Wins");
+                        }
+                    }
+                    if (row > 5 || row < 0 || j > 6 || j < 0) {
+                        break;
+                    }
+                }
+            }
+            turn++;
+            play = 1;
+            if (end === 0) {
+                if (turn % 2 === 0) {
+                    $("#playerTurn").text("Player One's Turn");
+                } else {
+                    $("#playerTurn").text("Player Two's Turn");
+                }
+            }
         }
-        play = 1;
+    });
+    
+    $("#btnNewGame").click(function () {
+       $("tr").children().empty();
+       for (var i = 0; i < 6; i++) {
+        for (var j = 0; j < 7; j++) {
+            if (!board[i]) {
+                board[i] = [];
+            }
+            board[i][j] = " ";
+        }
+    }
+    
+    $("#playerTurn").text("Player One's Turn");
+    
+    turn = 0;
+    end = 0;
+    play = 1;
     });
 });
 
