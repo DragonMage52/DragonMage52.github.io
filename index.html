@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+	<link rel="stylesheet" type="text/css" href="css/default.css" />
+	<script src="js/masonry.pkgd.js"></script>
+	
+</head>
+	
+<body>
+	<div class="container"> 
+    		
+		<div class="topnav">
+			<a id="filterBtn" class="filter" onclick="toggleSideNav()" href="#filter">Filters</a>
+			<a href="#about">About</a>
+			<a class="active" href="#home">Gallery</a>
+		</div>
+		
+		<div id="mySidenav" class="sidenav hidden">
+			<a href="javascript:void(0)" class="closebtn" onclick="toggleSideNav()">&times;</a>
+			<span id="filterType" class="navTitle">Type</span>
+			<span id="filterLocation" class="navTitle">Location</span>
+			<span id="filterKeyword" class="navTitle">Keyword</span>
+			
+		</div>
+		
+  		<div id="grid" class="grid">
+			<div class="grid-sizer"></div>
+			<div class="grid-item">
+				<div class="grid-item-border"> 
+					<span class ="borderText">Title</span>
+				</div>
+				<img src="images/500/APP DSC00514-Edit.jpg">
+			
+			</div>
+	  
+  		</div>
+	</div>
+
+<script src="js/imagesloaded.pkgd.js"></script> 
+<script src="js/loadimages.js"></script> 
+
+	
+<script>
+	
+	function removeFunction() {
+		msnry.remove(document.getElementById("first"));
+		msnry.layout();
+	}
+	
+	
+	function toggleSideNav() {
+		var sideNav = document.getElementById("mySidenav");
+		
+		if(sideNav.classList.contains("hidden")) {
+			sideNav.style.width = "9%";
+			document.getElementById("grid").style.marginLeft = "9.5%";
+			sideNav.classList.remove("hidden");
+			sideNav.classList.add("visible");
+			document.getElementById("filterBtn").classList.add("active");
+		}
+		else {
+			sideNav.style.width = "0";
+			document.getElementById("grid").style.marginLeft = "5%";
+			sideNav.classList.remove("visible", "active");
+			sideNav.classList.add("hidden");
+			document.getElementById("filterBtn").classList.remove("active");
+		}
+		
+	}
+		
+</script>
+	
+</body>
+</html>
