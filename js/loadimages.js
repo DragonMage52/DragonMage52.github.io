@@ -127,8 +127,6 @@ function submitFilter() {
 	
 	var gridList = document.querySelectorAll(".grid-item");
 	
-	alert(filterList);
-	
 	for(i = 0; i < gridList.length; i++) {
 		for(j = 0; j < filterList.length; j++) {
 			if(gridList[i].classList.contains(filterList[j])) {
