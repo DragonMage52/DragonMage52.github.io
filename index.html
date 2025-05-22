@@ -10,22 +10,24 @@
 	<div class="container"> 
     		
 		<div class="topnav">
-			<a id="filterBtn" class="filter" onclick="toggleSideNav()" href="#filter">Filters</a>
+			<a id="filterBtn" class="filter" onclick="toggleSideNav()" href="javascript:void(0)">Filters</a>
 			<a href="#about">About</a>
 			<a class="active" href="#home">Gallery</a>
 		</div>
 		
-		<div id="mySidenav" class="sidenav hidden">
+		<div id="mySidenav" class="sidenav sideHidden">
 			<a href="javascript:void(0)" class="closebtn" onclick="toggleSideNav()">&times;</a>
-			<span id="filterType" class="navTitle">Type</span>
-			<span id="filterLocation" class="navTitle">Location</span>
-			<span id="filterKeyword" class="navTitle">Keyword</span>
+			<span id="filterLocation" class="sideNavTitle">Location</span>
+			<ul id="locationList" class="filterList"></ul>
+			<span id="filterKeyword" class="sideNavTitle">Keyword</span>
+			<ul id="keywordList" class="filterList"></ul>
+			<button onclick="submitFilter()">Submit</button>
 			
 		</div>
 		
   		<div id="grid" class="grid">
 			<div class="grid-sizer"></div>
-			<div class="grid-item">
+			<!--<div class="grid-item">
 				<div class="grid-item-border"> 
 					<span class="borderTitle">Title</span>
 					<span class="borderLocation">📍Jones Beach State Park</span>
@@ -34,7 +36,7 @@
 				</div>
 				<img src="images/500/APP DSC00514-Edit.jpg">
 			
-			</div>
+			</div>-->
 	  
   		</div>
 	</div>
@@ -45,27 +47,21 @@
 	
 <script>
 	
-	function removeFunction() {
-		msnry.remove(document.getElementById("first"));
-		msnry.layout();
-	}
-	
-	
 	function toggleSideNav() {
 		var sideNav = document.getElementById("mySidenav");
 		
-		if(sideNav.classList.contains("hidden")) {
-			sideNav.style.width = "9%";
-			document.getElementById("grid").style.marginLeft = "9.5%";
-			sideNav.classList.remove("hidden");
-			sideNav.classList.add("visible");
+		if(sideNav.classList.contains("sideHidden")) {
+			sideNav.style.width = "14%";
+			document.getElementById("grid").style.marginLeft = "14.5%";
+			sideNav.classList.remove("sideHidden");
+			sideNav.classList.add("sideVisible");
 			document.getElementById("filterBtn").classList.add("active");
 		}
 		else {
 			sideNav.style.width = "0";
-			document.getElementById("grid").style.marginLeft = "5%";
-			sideNav.classList.remove("visible", "active");
-			sideNav.classList.add("hidden");
+			document.getElementById("grid").style.marginLeft = "7.5%";
+			sideNav.classList.remove("sideVisible", "active");
+			sideNav.classList.add("sideHidden");
 			document.getElementById("filterBtn").classList.remove("active");
 		}
 		
