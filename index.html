@@ -7,6 +7,38 @@
 </head>
 	
 <body>
+	
+	<div id="lightbox" class="lightbox">
+		
+		<div class="lightbox-card">
+			
+			<img id="lightbox-img" src="" alt="">
+			
+			<div class="lightbox-info">
+				
+				<h3 id="lightbox-title">Title</h3>
+				
+				<div class="lightbox-body">
+				
+					<div class="lightbox-text">
+						<p id="lightbox-text"></p>
+					</div>
+				
+					<div class="lightbox-map">
+						<iframe
+								width="450"
+								height="250"
+								frameborder="0" style="border:0"
+								referrerpolicy="no-referrer-when-downgrade"
+								src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA-7lgcuYOldRXBEDS4f_YV7Lyp8Ly-Bxk&&q=Eiffel+Tower,Paris+France"
+								allowfullscreen>
+						</iframe>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 	<div class="container"> 
     		
 		<div class="topnav">
@@ -25,18 +57,26 @@
 			
 		</div>
 		
+		<div class="overlay">
+			<a href="javascript:void(0)" class="closebtn" onclick="closeOverlay()">&times;</a>
+			
+			<div class="overlayConent">
+				
+			</div>
+		</div>
+		
   		<div id="grid" class="grid">
 			<div class="grid-sizer"></div>
-			<!--<div class="grid-item">
+			<div class="grid-item" onclick="openOverlay()">
 				<div class="grid-item-border"> 
-					<span class="borderTitle">Title</span>
-					<span class="borderLocation">📍Jones Beach State Park</span>
+					<span class="borderTitle">Milky Way over Montauk Lighthouse</span>
+					<span class="borderLocation">ðŸ“Montauk Point State Park</span>
 					<span class="borderDate">5/20/2025</span>
 					
 				</div>
-				<img src="images/500/APP DSC00514-Edit.jpg">
+				<img src="images/grid/APP DSC00514-Edit.jpg">
 			
-			</div>-->
+			</div>
 	  
   		</div>
 	</div>
