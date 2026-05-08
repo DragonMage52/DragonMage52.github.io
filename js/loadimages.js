@@ -107,6 +107,9 @@ function addImages (item, index, arr) {
 	
 	imageElement.src = "images/grid/" + imageList[index].name;
 	gridItemElement.appendChild(imageElement);
+	
+	gridItemElement.onclick = () => openOverlay(gridItemElement);
+	
 	grid.append(gridItemElement);
 	
 	
@@ -117,7 +120,6 @@ function submitFilter() {
 	var checkboxList = document.querySelectorAll(".filterCheckbox");
 	var filterList = [];
 	var i,j;
-	var match = false;
 	
 	for(i = 0; i < checkboxList.length; i++) {
 		if(checkboxList[i].checked) {
@@ -127,29 +129,44 @@ function submitFilter() {
 	
 	var gridList = document.querySelectorAll(".grid-item");
 	
-	for(i = 0; i < gridList.length; i++) {
+	outerLoop: for(i = 0; i < gridList.length; i++) {
 		for(j = 0; j < filterList.length; j++) {
 			if(gridList[i].classList.contains(filterList[j])) {
 				gridList[i].style.display = "inline-block";
-				match = true;
-				break;
+				continue outerLoop;
 			}
-			if(!match) {
-				gridList[i].style.display = "none";
-			}
-			match = false;
+			
+			gridList[i].style.display = "none";
 		}
 	}
 	
 	msnry.layout();
+}
+
+function openOverlay(selectedImg) {
 	
-	/*if(x.style.display === "none") {
-		x.style.display = "inline-block";
-	}
-	else {
-		x.style.display = "none";
-	}
-	msnry.layout();*/
+	var lightbox = document.getElementById("lightbox");
+	var lightboxImg = document.getElementById("lightbox-img");
+	var lightboxText = document.getElementById("lightbox-text");
+	
+	lightbox.addEventListener("click", (e) => {
+		if (e.target == lightbox) {
+			lightbox.classList.remove("active");
+		}
+	});
+	
+	document.addEventListener("keydown", (e) => {
+		if (e.key == "Escape") {
+			lightbox.classList.remove("active");
+		}
+	});
+	
+	lightboxImg.src = "";
+	lightboxText.textContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+	
+	lightboxImg.src = "images/full/" + imageList[selectedImg.id].name;
+	lightbox.classList.add("active");
+	
 }
 	
 
